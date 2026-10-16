@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Amsterdam 2027 🇳🇱</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        .hero-bg {
+            background: linear-gradient(rgba(15, 23, 42, 0.75), rgba(15, 23, 42, 0.85)), 
+                        url('https://images.unsplash.com/photo-1512470876302-972faa2aa9a4?q=80&w=1920&auto=format&fit=crop');
+            background-size: cover;
+            background-position: center;
+        }
+    </style>
+</head>
+<body class="bg-slate-900 text-slate-100 font-sans min-h-screen pb-12">
+
+    <!-- Header / Hero -->
+    <header class="hero-bg text-center py-16 px-4 shadow-xl border-b border-slate-800">
+        <span class="bg-amber-500/20 text-amber-400 border border-amber-500/30 text-xs font-semibold px-3 py-1 rounded-full uppercase tracking-wider">
+            Trip entre Potes
+        </span>
+        <h1 class="text-4xl md:text-6xl font-black mt-4 mb-2 tracking-tight">AMSTERDAM 2027</h1>
+        <p class="text-slate-300 text-lg">Du 4 au 7 Janvier 2027 • 3 Voyageurs</p>
+        
+        <!-- Compte à rebours -->
+        <div id="countdown" class="flex justify-center gap-4 mt-8">
+            <div class="bg-slate-800/80 backdrop-blur p-3 rounded-lg min-w-[70px] border border-slate-700">
+                <span id="days" class="block text-2xl font-bold text-amber-400">0</span>
+                <span class="text-xs text-slate-400">Jours</span>
+            </div>
+            <div class="bg-slate-800/80 backdrop-blur p-3 rounded-lg min-w-[70px] border border-slate-700">
+                <span id="hours" class="block text-2xl font-bold text-amber-400">0</span>
+                <span class="text-xs text-slate-400">Heures</span>
+            </div>
+            <div class="bg-slate-800/80 backdrop-blur p-3 rounded-lg min-w-[70px] border border-slate-700">
+                <span id="minutes" class="block text-2xl font-bold text-amber-400">0</span>
+                <span class="text-xs text-slate-400">Min</span>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="max-w-5xl mx-auto px-4 mt-10 grid grid-cols-1 md:grid-cols-3 gap-8">
+        
+        <!-- Colonne Gauche : Check-list & Infos -->
+        <section class="space-y-6">
+            <!-- Informations clés -->
+            <div class="bg-slate-800 rounded-xl p-6 border border-slate-700/50 shadow-lg">
+                <h2 class="text-xl font-bold mb-4 flex items-center gap-2 text-amber-400">
+                    <i class="fa-solid fa-circle-info"></i> Infos Clés
+                </h2>
+                <ul class="space-y-3 text-sm text-slate-300">
+                    <li class="flex items-center gap-3">
+                        <i class="fa-solid fa-users text-slate-400 w-4"></i>
+                        <span><strong>Équipe :</strong> 3 personnes</span>
+                    </li>
+                    <li class="flex items-center gap-3">
+                        <i class="fa-solid fa-train text-slate-400 w-4"></i>
+                        <span><strong>Transport :</strong> Eurostar / Train</span>
+                    </li>
+                    <li class="flex items-center gap-3">
+                        <i class="fa-solid fa-hotel text-slate-400 w-4"></i>
+                        <span><strong>Logement :</strong> À réserver</span>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- Check-list Préparatifs -->
+            <div class="bg-slate-800 rounded-xl p-6 border border-slate-700/50 shadow-lg">
+                <h2 class="text-xl font-bold mb-4 flex items-center gap-2 text-amber-400">
+                    <i class="fa-solid fa-list-check"></i> Préparatifs
+                </h2>
+                <div class="flex gap-2 mb-4">
+                    <input type="text" id="todo-input" placeholder="Ajouter une tâche..." 
+                           class="w-full bg-slate-900 border border-slate-700 rounded-lg px-3 py-2 text-sm text-slate-100 focus:outline-none focus:border-amber-400">
+                    <button onclick="addTodo()" class="bg-amber-500 hover:bg-amber-600 text-slate-900 font-bold px-3 rounded-lg transition">
+                        <i class="fa-solid fa-plus"></i>
+                    </button>
+                </div>
+                <ul id="todo-list" class="space-y-2 text-sm">
+                    <!-- Généré dynamiquement -->
+                </ul>
+            </div>
+        </section>
+
+        <!-- Colonne Droite : Programme & Itinéraire -->
+        <section class="md:col-span-2 space-y-6">
+            <div class="bg-slate-800 rounded-xl p-6 border border-slate-700/50 shadow-lg">
+                <h2 class="text-xl font-bold mb-6 flex items-center gap-2 text-amber-400">
+                    <i class="fa-solid fa-calendar-days"></i> Programme du Séjour
+                </h2>
+
+                <div class="space-y-6">
+                    <!-- Jour 1 -->
+                    <div class="border-l-2 border-amber-400 pl-4 space-y-2">
+                        <div class="flex justify-between items-center">
+                            <h3 class="font-bold text-slate-100">Lundi 4 Janvier — Arrivée & Quartier Rouge</h3>
+                            <span class="text-xs bg-slate-700 text-slate-300 px-2 py-0.5 rounded">Jour 1</span>
+                        </div>
+                        <p class="text-xs text-slate-400">Installation à l'hôtel, balade dans le centre historique et découverte des canaux de nuit.</p>
+                    </div>
+
+                    <!-- Jour 2 -->
+                    <div class="border-l-2 border-amber-400 pl-4 space-y-2">
+                        <div class="flex justify-between items-center">
+                            <h3 class="font-bold text-slate-100">Mardi 5 Janvier — Musées & Culture</h3>
+                            <span class="text-xs bg-slate-700 text-slate-300 px-2 py-0.5 rounded">Jour 2</span>
+                        </div>
+                        <p class="text-xs text-slate-400">Rijksmuseum ou Musée Van Gogh le matin. Balade dans le quartier des 9 Ruches (9 Straatjes) l'après-midi.</p>
+                    </div>
+
+                    <!-- Jour 3 -->
+                    <div class="border-l-2 border-amber-400 pl-4 space-y-2">
+                        <div class="flex justify-between items-center">
+                            <h3 class="font-bold text-slate-100">Mercredi 6 Janvier — Jordaan & Soirée</h3>
+                            <span class="text-xs bg-slate-700 text-slate-300 px-2 py-0.5 rounded">Jour 3</span>
+                        </div>
+                        <p class="text-xs text-slate-400">Visite de la Maison d'Anne Frank, café brun traditionnel, et soirée festive dans le quartier de Leidseplein.</p>
+                    </div>
+
+                    <!-- Jour 4 -->
+                    <div class="border-l-2 border-amber-400 pl-4 space-y-2">
+                        <div class="flex justify-between items-center">
+                            <h3 class="font-bold text-slate-100">Jeudi 7 Janvier — Aandam Lookout & Départ</h3>
+                            <span class="text-xs bg-slate-700 text-slate-300 px-2 py-0.5 rounded">Jour 4</span>
+                        </div>
+                        <p class="text-xs text-slate-400">Traversée en ferry vers Amsterdam Noord, vue panoramique à A'DAM Lookout, derniers achats et retour.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Script JavaScript -->
+    <script>
+        // --- COMPTE À REBOURS ---
+        const tripDate = new Date('2027-01-04T00:00:00').getTime();
+
+        function updateCountdown() {
+            const now = new Date().getTime();
+            const difference = tripDate - now;
+
+            if (difference > 0) {
+                const days = Math.floor(difference / (1000 * 60 * 60 * 24));
+                const hours = Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const minutes = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
+
+                document.getElementById('days').innerText = days;
+                document.getElementById('hours').innerText = hours;
+                document.getElementById('minutes').innerText = minutes;
+            }
+        }
+        setInterval(updateCountdown, 1000);
+        updateCountdown();
+
+        // --- GESTION DE LA CHECK-LIST (LocalStorage) ---
+        const defaultTodos = [
+            { text: "Réserver les billets de train", done: false },
+            { text: "Trouver un logement (Airbnb/Hôtel)", done: false },
+            { text: "Réserver le musée Van Gogh / Anne Frank", done: false }
+        ];
+
+        let todos = JSON.parse(localStorage.getItem('ams_todos')) || defaultTodos;
+
+        function saveAndRender() {
+            localStorage.setItem('ams_todos', JSON.stringify(todos));
+            const list = document.getElementById('todo-list');
+            list.innerHTML = '';
+
+            todos.forEach((todo, index) => {
+                const li = document.createElement('li');
+                li.className = `flex items-center justify-between p-2 rounded bg-slate-900/50 border border-slate-700/50 ${todo.done ? 'line-through text-slate-500' : 'text-slate-200'}`;
+                li.innerHTML = `
+                    <span onclick="toggleTodo(${index})" class="cursor-pointer flex-1">${todo.text}</span>
+                    <button onclick="removeTodo(${index})" class="text-slate-500 hover:text-red-400 ml-2">
+                        <i class="fa-solid fa-trash"></i>
+                    </button>
+                `;
+                list.appendChild(li);
+            });
+        }
+
+        function addTodo() {
+            const input = document.getElementById('todo-input');
+            if (input.value.trim() !== '') {
+                todos.push({ text: input.value.trim(), done: false });
+                input.value = '';
+                saveAndRender();
+            }
+        }
+
+        function toggleTodo(index) {
+            todos[index].done = !todos[index].done;
+            saveAndRender();
+        }
+
+        function removeTodo(index) {
+            todos.splice(index, 1);
+            saveAndRender();
+        }
+
+        saveAndRender();
+    </script>
+</body>
+</html>
