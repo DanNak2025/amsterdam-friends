@@ -8,9 +8,7 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;700;900&display=swap');
-        body {
-            font-family: 'Heebo', sans-serif;
-        }
+        body { font-family: 'Heebo', sans-serif; }
         .hero-bg {
             background: linear-gradient(rgba(15, 23, 42, 0.75), rgba(15, 23, 42, 0.85)), 
                         url('https://images.unsplash.com/photo-1512470876302-972faa2aa9a4?q=80&w=1920&auto=format&fit=crop');
@@ -47,29 +45,48 @@
     </header>
 
     <!-- Main Content -->
-    <main class="max-w-5xl mx-auto px-4 mt-10 grid grid-cols-1 md:grid-cols-3 gap-8">
+    <main class="max-w-6xl mx-auto px-4 mt-10 grid grid-cols-1 md:grid-cols-3 gap-8">
         
-        <!-- עמודה ימנית: פרטים ומשימות -->
+        <!-- עמודה ימנית: הצעת מקומות + הכנות -->
         <section class="space-y-6">
-            <!-- מידע כללי -->
+            
+            <!-- טופס הצעת מקום לטיול -->
             <div class="bg-slate-800 rounded-xl p-6 border border-slate-700/50 shadow-lg">
                 <h2 class="text-xl font-bold mb-4 flex items-center gap-2 text-amber-400">
-                    <i class="fa-solid fa-circle-info"></i> מידע כללי
+                    <i class="fa-solid fa-map-pin"></i> להוסיף מקום לתכנית
                 </h2>
-                <ul class="space-y-3 text-sm text-slate-300">
-                    <li class="flex items-center gap-3">
-                        <i class="fa-solid fa-users text-slate-400 w-4"></i>
-                        <span><strong>צוות:</strong> אמיר, מושיקו, דן</span>
-                    </li>
-                    <li class="flex items-center gap-3">
-                        <i class="fa-solid fa-plane text-slate-400 w-4"></i>
-                        <span><strong>טיסות:</strong> טרם הוזמנו</span>
-                    </li>
-                    <li class="flex items-center gap-3">
-                        <i class="fa-solid fa-hotel text-slate-400 w-4"></i>
-                        <span><strong>מלון / דירה:</strong> בבדיקה</span>
-                    </li>
-                </ul>
+                <form onsubmit="addSuggestion(event)" class="space-y-3">
+                    <div>
+                        <label class="block text-xs text-slate-400 mb-1">מי מציע?</label>
+                        <select id="sug-author" class="w-full bg-slate-900 border border-slate-700 rounded-lg p-2 text-sm text-slate-100 focus:outline-none focus:border-amber-400">
+                            <option value="אמיר">אמיר</option>
+                            <option value="מושיקו">מושיקו</option>
+                            <option value="דן">דן</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block text-xs text-slate-400 mb-1">לאיזה יום?</label>
+                        <select id="sug-day" class="w-full bg-slate-900 border border-slate-700 rounded-lg p-2 text-sm text-slate-100 focus:outline-none focus:border-amber-400">
+                            <option value="1">יום 1 (4 ינואר)</option>
+                            <option value="2">יום 2 (5 ינואר)</option>
+                            <option value="3">יום 3 (6 ינואר)</option>
+                            <option value="4">יום 4 (7 ינואר)</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block text-xs text-slate-400 mb-1">שם המקום / פעילות</label>
+                        <input type="text" id="sug-title" required placeholder="למשל: A'DAM Lookout" 
+                               class="w-full bg-slate-900 border border-slate-700 rounded-lg p-2 text-sm text-slate-100 focus:outline-none focus:border-amber-400">
+                    </div>
+                    <div>
+                        <label class="block text-xs text-slate-400 mb-1">תיאור קצר</label>
+                        <textarea id="sug-desc" rows="2" placeholder="למה כדאי ללכת לשם?" 
+                                  class="w-full bg-slate-900 border border-slate-700 rounded-lg p-2 text-sm text-slate-100 focus:outline-none focus:border-amber-400"></textarea>
+                    </div>
+                    <button type="submit" class="w-full bg-amber-500 hover:bg-amber-600 text-slate-900 font-bold p-2.5 rounded-lg transition text-sm flex items-center justify-center gap-2">
+                        <i class="fa-solid fa-plus"></i> הוסף לתכנית
+                    </button>
+                </form>
             </div>
 
             <!-- רשימת משימות -->
@@ -88,6 +105,7 @@
                     <!-- מיוצר דינמית -->
                 </ul>
             </div>
+
         </section>
 
         <!-- עמודה שמאלית: תכנון ימי -->
@@ -99,39 +117,43 @@
 
                 <div class="space-y-6">
                     <!-- יום 1 -->
-                    <div class="border-r-2 border-amber-400 pr-4 space-y-2">
+                    <div class="border-r-2 border-amber-400 pr-4 space-y-3">
                         <div class="flex justify-between items-center">
-                            <h3 class="font-bold text-slate-100">יום שני, 4 בינואר — נחיתה וסיבוב ראשון</h3>
-                            <span class="text-xs bg-slate-700 text-slate-300 px-2 py-0.5 rounded">יום 1</span>
+                            <h3 class="font-bold text-slate-100 text-lg">יום שני, 4 בינואר — נחיתה וסיבוב ראשון</h3>
+                            <span class="text-xs bg-amber-500/20 text-amber-400 px-2.5 py-1 rounded-full font-semibold">יום 1</span>
                         </div>
-                        <p class="text-xs text-slate-400">הגעה למלון, התארגנות, סיבוב ברגל במרכז העיר והתרשמות מהתעלות בלילה.</p>
+                        <p class="text-sm text-slate-400">הגעה למלון, התארגנות, סיבוב ברגל במרכז העיר והתרשמות מהתעלות בלילה.</p>
+                        <div id="day-1-suggestions" class="space-y-2 pt-1"></div>
                     </div>
 
                     <!-- יום 2 -->
-                    <div class="border-r-2 border-amber-400 pr-4 space-y-2">
+                    <div class="border-r-2 border-amber-400 pr-4 space-y-3">
                         <div class="flex justify-between items-center">
-                            <h3 class="font-bold text-slate-100">יום שלישי, 5 בינואר — מוזיאונים ושופינג</h3>
-                            <span class="text-xs bg-slate-700 text-slate-300 px-2 py-0.5 rounded">יום 2</span>
+                            <h3 class="font-bold text-slate-100 text-lg">יום שלישי, 5 בינואר — מוזיאונים ושופינג</h3>
+                            <span class="text-xs bg-amber-500/20 text-amber-400 px-2.5 py-1 rounded-full font-semibold">יום 2</span>
                         </div>
-                        <p class="text-xs text-slate-400">ביקור במוזיאון ואן גוך או רייקסמוזיאום בבוקר, ואחר הצהריים טיול באזור "9 הסמטאות" (De 9 Straatjes).</p>
+                        <p class="text-sm text-slate-400">ביקור במוזיאון ואן גוך או רייקסמוזיאום בבוקר, ואחר הצהריים טיול באזור "9 הסמטאות".</p>
+                        <div id="day-2-suggestions" class="space-y-2 pt-1"></div>
                     </div>
 
                     <!-- יום 3 -->
-                    <div class="border-r-2 border-amber-400 pr-4 space-y-2">
+                    <div class="border-r-2 border-amber-400 pr-4 space-y-3">
                         <div class="flex justify-between items-center">
-                            <h3 class="font-bold text-slate-100">יום רביעי, 6 בינואר — יורדאן ובילוי לילי</h3>
-                            <span class="text-xs bg-slate-700 text-slate-300 px-2 py-0.5 rounded">יום 3</span>
+                            <h3 class="font-bold text-slate-100 text-lg">יום רביעי, 6 בינואר — יורדאן ובילוי לילי</h3>
+                            <span class="text-xs bg-amber-500/20 text-amber-400 px-2.5 py-1 rounded-full font-semibold">יום 3</span>
                         </div>
-                        <p class="text-xs text-slate-400">סיבוב בשכונת יורדאן (Jordaan), בית אנה פרנק, ובערב בילוי באזור הליידספליין (Leidseplein).</p>
+                        <p class="text-sm text-slate-400">סיבוב בשכונת יורדאן (Jordaan), בית אנה פרנק, ובערב בילוי באזור הליידספליין.</p>
+                        <div id="day-3-suggestions" class="space-y-2 pt-1"></div>
                     </div>
 
                     <!-- יום 4 -->
-                    <div class="border-r-2 border-amber-400 pr-4 space-y-2">
+                    <div class="border-r-2 border-amber-400 pr-4 space-y-3">
                         <div class="flex justify-between items-center">
-                            <h3 class="font-bold text-slate-100">יום חמישי, 7 בינואר — תצפית וחזרה</h3>
-                            <span class="text-xs bg-slate-700 text-slate-300 px-2 py-0.5 rounded">יום 4</span>
+                            <h3 class="font-bold text-slate-100 text-lg">יום חמישי, 7 בינואר — תצפית וחזרה</h3>
+                            <span class="text-xs bg-amber-500/20 text-amber-400 px-2.5 py-1 rounded-full font-semibold">יום 4</span>
                         </div>
-                        <p class="text-xs text-slate-400">מעבורת לצפון העיר, תצפית ב-A'DAM Lookout, קניות אחרונות ונסיעה לשדה התעופה.</p>
+                        <p class="text-sm text-slate-400">מעבורת לצפון העיר, תצפית ב-A'DAM Lookout, קניות אחרונות ונסיעה לשדה התעופה.</p>
+                        <div id="day-4-suggestions" class="space-y-2 pt-1"></div>
                     </div>
                 </div>
             </div>
@@ -161,7 +183,62 @@
         setInterval(updateCountdown, 1000);
         updateCountdown();
 
-        // --- ניהול משימות (LocalStorage) ---
+        // --- הצעות למקומות בתכנית ---
+        let suggestions = JSON.parse(localStorage.getItem('ams_suggestions')) || [];
+
+        function addSuggestion(e) {
+            e.preventDefault();
+            const author = document.getElementById('sug-author').value;
+            const day = document.getElementById('sug-day').value;
+            const title = document.getElementById('sug-title').value.trim();
+            const desc = document.getElementById('sug-desc').value.trim();
+
+            if (title) {
+                suggestions.push({ id: Date.now(), author, day, title, desc });
+                document.getElementById('sug-title').value = '';
+                document.getElementById('sug-desc').value = '';
+                saveAndRenderSuggestions();
+            }
+        }
+
+        function removeSuggestion(id) {
+            suggestions = suggestions.filter(s => s.id !== id);
+            saveAndRenderSuggestions();
+        }
+
+        function saveAndRenderSuggestions() {
+            localStorage.setItem('ams_suggestions', JSON.stringify(suggestions));
+
+            // ניקוי
+            [1, 2, 3, 4].forEach(d => {
+                const container = document.getElementById(`day-${d}-suggestions`);
+                if (container) container.innerHTML = '';
+            });
+
+            // רינדור
+            suggestions.forEach(s => {
+                const container = document.getElementById(`day-${s.day}-suggestions`);
+                if (container) {
+                    const card = document.createElement('div');
+                    card.className = "bg-slate-900/80 border border-amber-500/30 rounded-lg p-3 text-xs flex justify-between items-start gap-2";
+                    card.innerHTML = `
+                        <div class="space-y-1">
+                            <div class="flex items-center gap-2">
+                                <span class="font-bold text-amber-400 text-sm"><i class="fa-solid fa-location-dot"></i> ${s.title}</span>
+                                <span class="bg-slate-800 text-slate-400 px-2 py-0.5 rounded text-[10px]">הוצע על ידי ${s.author}</span>
+                            </div>
+                            ${s.desc ? `<p class="text-slate-300">${s.desc}</p>` : ''}
+                        </div>
+                        <button onclick="removeSuggestion(${s.id})" class="text-slate-500 hover:text-red-400">
+                            <i class="fa-solid fa-trash"></i>
+                        </button>
+                    `;
+                    container.appendChild(card);
+                }
+            });
+        }
+
+        // --- ניהול משימות ---
         const defaultTodos = [
             { text: "הזמנת טיסות (אמיר, מושיקו, דן)", done: false },
             { text: "סגירת מלון / דירה", done: false },
@@ -170,7 +247,7 @@
 
         let todos = JSON.parse(localStorage.getItem('ams_todos_he')) || defaultTodos;
 
-        function saveAndRender() {
+        function saveAndRenderTodos() {
             localStorage.setItem('ams_todos_he', JSON.stringify(todos));
             const list = document.getElementById('todo-list');
             list.innerHTML = '';
@@ -193,21 +270,23 @@
             if (input.value.trim() !== '') {
                 todos.push({ text: input.value.trim(), done: false });
                 input.value = '';
-                saveAndRender();
+                saveAndRenderTodos();
             }
         }
 
         function toggleTodo(index) {
             todos[index].done = !todos[index].done;
-            saveAndRender();
+            saveAndRenderTodos();
         }
 
         function removeTodo(index) {
             todos.splice(index, 1);
-            saveAndRender();
+            saveAndRenderTodos();
         }
 
-        saveAndRender();
+        // טעינה ראשונית
+        saveAndRenderSuggestions();
+        saveAndRenderTodos();
     </script>
 </body>
 </html>
